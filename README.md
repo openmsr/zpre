@@ -5,7 +5,7 @@ detailed cad model and simulations of the [zpre](https://www.osti.gov/servlets/p
 
 cad model of the are can be found [here](https://cad.onshape.com/documents/c51fcabf7b4a45b5a8d610d5/v/1e941e226a75c4f4f3cbe020/e/4c356de19c02efb455bb582a) on onshape. note, the step files for the simulations (found in the step_files folder) come from the [final_for_export](https://cad.onshape.com/documents/c51fcabf7b4a45b5a8d610d5/w/14e94161170229891d1c18bd/e/4c356de19c02efb455bb582a) branch. currently onshape does not properly export enclosed volumes, so some parts need to be modified in order to be meshed properly
 
-### are core 
+### zpre core 
 ![](figures/core.png)
 
 ## prerequisites 
