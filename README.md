@@ -1,5 +1,5 @@
 # zpre
-detailed cad model and simulations of the [zpre](https://www.osti.gov/servlets/purl/4673343) (zero power reflector-moderated reactor experiment at elevated temperature), operated by oak ridge national laboratory 1957
+detailed cad model and simulations of the [zpre](https://www.osti.gov/servlets/purl/4673343) (zero power reflector-moderated reactor experiment at elevated temperature, sometimes refered to in documentation as the pr-mark I (pratt and whitney mark I).), operated by oak ridge national laboratory 1957
 
 ## model
 
