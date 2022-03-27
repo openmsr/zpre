@@ -4,6 +4,14 @@ import openmc
 # equilibrium operating temperature in kelvin
 operating_temp = 911.15
 
+# thermal expansion coefficients
+inconel_te = 15.8e-6
+beo_te = 8e-6
+hastelloyx_te = 15.9e-6
+b4c_te = 4.5e-6
+stainless_te = 9.9e-6
+salt_te = 0.00093
+
 # zpre material definitions
 
 # inconel
@@ -33,7 +41,7 @@ inconel.add_element('Cd',trace,percent_type='wo')
 inconel.add_element('V',trace,percent_type='wo')
 inconel.add_element('Sn',trace,percent_type='wo')
 inconel.add_element('Mg',trace,percent_type='wo')
-inconel.set_density('g/cm3',8.5)
+inconel.set_density('g/cm3',8.51-inconel_te*(operating_temp-293.15))
 
 # beryllium reflectors
 # ORNL-2536 pg. 92
@@ -48,13 +56,13 @@ reflector.add_element('Co',0.000005223,percent_type='wo')
 reflector.add_element('Ni',0.000213616,percent_type='wo')
 reflector.add_element('Cd',0.000000200,percent_type='wo')
 reflector.add_element('B',0.000001039,percent_type='wo')
-inconel.set_density('g/cm3',1.8493)
+reflector.set_density('g/cm3',2.55-beo_te*(operating_temp-293.15))
 
 # boron in lower part of the reactor; boron carbide
 b4c = openmc.Material(name = 'b4c', temperature = operating_temp)
 b4c.add_element('B',4.0)
 b4c.add_element('C',1.0)
-b4c.set_density('g/cm3',2.52)
+b4c.set_density('g/cm3',2.52-b4c_te*(operating_temp-293.15))
 
 # beryllium reflectors
 # ORNL-2536 pg. 93
@@ -65,7 +73,7 @@ hastelloyx.add_element('Cr',0.226256918302626,percent_type='wo')
 hastelloyx.add_element('Co',0.010178976879095,percent_type='wo')
 hastelloyx.add_element('Mn',0.002306601900095,percent_type='wo')
 hastelloyx.add_element('Ni',0.504147672628661,percent_type='wo')
-hastelloyx.set_density('g/cm3',8.22)
+hastelloyx.set_density('g/cm3',8.22-hastelloyx_te*(operating_temp-293.15))
 
 # stainless https://www.aesteiron.com/sa240-304l-stainless-steel-sheet-plate.html
 stainless = openmc.Material(name='stainless',temperature = operating_temp)
@@ -77,7 +85,7 @@ stainless.add_element('Si',0.75,percent_type='wo')
 stainless.add_element('Cr',18.00,percent_type='wo')
 stainless.add_element('Ni',8.0,percent_type='wo')
 stainless.add_element('N',0.1,percent_type='wo')
-stainless.set_density('g/cm3',8.5)
+stainless.set_density('g/cm3',8.5-stainless_te*(operating_temp-293.15))
 
 # brass for scintillator can
 brass = openmc.Material(name='brass',temperature = operating_temp)
@@ -156,4 +164,4 @@ fuel.add_element('Na',0.11,percent_type='wo')
 fuel.add_element('Zr',0.5414,percent_type='wo')
 fuel.add_nuclide('U235',0.0922,percent_type='wo')
 fuel.add_nuclide('U238',0.0174,percent_type='wo')
-fuel.set_density('g/cm3',4.16)
+fuel.set_density('g/cm3',4.16-salt_te*(operating_temp-273.15))
