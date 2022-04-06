@@ -10,7 +10,7 @@ import os
 ###############################################################################
 # inputs
 
-h5m_out_filepath = os.getcwd()  + '/h5m_files/ARE.h5m'
+h5m_out_filepath = os.getcwd()  + '/h5m_files/zpre.h5m'
 local_cubit_path = "/opt/Coreform-Cubit-2021.11/bin/"
 
 # scaling up from cm and for thermal expansion
