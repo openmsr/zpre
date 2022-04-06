@@ -23,6 +23,14 @@ do
             echo "generating photon flux plot..." &&
             bash ./scripts/pf.sh
             ;;
+        "neutron flux distribution")
+            echo "generating neutron flux distributions..." &&
+            bash ./scripts/nfd.sh
+            ;;
+        "rod worth")
+            echo "generating rod worth plots..." &&
+            bash ./scripts/rw.sh
+            ;;
         "quit")
             break
             ;;
