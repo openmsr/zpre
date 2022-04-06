@@ -129,7 +129,7 @@ bepo.set_density('g/cm3',7.30)
 # lindsay mix cement
 # ORNL-2536 pg. 83
 # spreading "Misc." material evenly by weight
-lindsay = openmc.Material(name='lindasy', temperature = operating_temp)
+lindsay = openmc.Material(name='lindsay', temperature = operating_temp)
 lindsay.add_element('N',0.70+0.70*0.042,percent_type='wo')
 lindsay.add_element('Sm',0.30*0.638+0.30*0.638*0.042,percent_type='wo')
 lindsay.add_element('Cd',0.30*0.263+0.30*0.263*0.042,percent_type='wo')
@@ -145,15 +145,15 @@ gold.set_density('g/cm3',19.3)
 # aluminum oxide (in detector tubes)
 aluminum = openmc.Material(name='aluminum', temperature = operating_temp)
 aluminum.add_element('Al',2.0)
-aluminum.add_element('0',3.0)
+aluminum.add_element('O',3.0)
 aluminum.set_density('g/cm3',3.95)
 
 # detector tube
 # consists of calcium flouride with uranium foils
 # instead, defining as one material with average composition
 dt = openmc.Material(name='dt', temperature = operating_temp)
-dt.add_elements_from_formula('CaF2',0.8742,percent_type='wo')
 dt.add_element('U',0.1258,percent_type='wo')
+dt.add_elements_from_formula('CaF2',percent_type='wo')
 dt.set_density('g/cm3',3.55)
 
 #fuel fuel NaF-ZrF4-UF4 0.20082-0.65416-0.122 %mol
@@ -165,3 +165,10 @@ fuel.add_element('Zr',0.5414,percent_type='wo')
 fuel.add_nuclide('U235',0.0922,percent_type='wo')
 fuel.add_nuclide('U238',0.0174,percent_type='wo')
 fuel.set_density('g/cm3',4.16-salt_te*(operating_temp-273.15))
+
+# enriched boron in boron sleeves
+boron = openmc.Material(name='boron', temperature = operating_temp)
+boron.add_nuclide('B10',0.92,percent_type='wo')
+boron.add_element('O',0.0577,percent_type='wo')
+boron.add_element('Fe',0.0023,percent_type='wo')
+boron.set_density('g/cm3',1.5-b4c_te*(operating_temp-293.15))

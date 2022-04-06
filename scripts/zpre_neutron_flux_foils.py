@@ -10,24 +10,27 @@ from materials import *
 h5m_filepath = 'h5m_files/zpre.h5m'
 
 #materials
-mats = openmc.Materials([salt,BeO,inconel,insulation,coolant,helium,stainless,boron,blanket,shield])
+mats = openmc.Materials([inconel,reflector,b4c,hastelloyx,stainless,brass,
+                         helium,scintillator,insulation,bepo,lindsay,gold,
+                         aluminum,dt,fuel,boron])
 mats.export_to_xml()
 
 settings = openmc.Settings()
 settings.temperature = {'method':'interpolation'}
-settings.batches = 100
+settings.batches = 200
 settings.inactive = 10
-settings.particles = 5000
+settings.particles = 10000
 source_area = openmc.stats.Box([-200., -200., -200.],[ 200.,  200.,  200.],only_fissionable = True)
 settings.source = openmc.Source(space=source_area)
 settings.export_to_xml()
 
-dag_univ = openmc.DAGMCUniverse(h5m_filepath)
+dag_univ = openmc.DAGMCUniverse(filename=h5m_filepath)
 geom = openmc.Geometry(root=dag_univ)
 geom.export_to_xml()
 
 tallies = openmc.Tallies()
 
+# at midplane
 # foil 1
 foil_tally_1 = openmc.Tally(name='foil_1')
 foil_tally_1.scores = ['flux']
@@ -100,6 +103,8 @@ foil_tally_12.scores = ['flux']
 foil_tally_12.filters = [openmc.CellFilter(37)]
 tallies.append(foil_tally_12)
 
+
+# 8 in. below midplane
 # foil 13
 foil_tally_13 = openmc.Tally(name='foil_13')
 foil_tally_13.scores = ['flux']
@@ -172,6 +177,7 @@ foil_tally_24.scores = ['flux']
 foil_tally_24.filters = [openmc.CellFilter(42)]
 tallies.append(foil_tally_24)
 
+# 16 in. below midplane
 # foil 25
 foil_tally_25 = openmc.Tally(name='foil_25')
 foil_tally_25.scores = ['flux']
@@ -225,5 +231,3 @@ tallies.export_to_xml()
 model = openmc.model.Model(geom, mats, settings, tallies)
 sp_filename = model.run()
 sp = openmc.StatePoint(sp_filename)
-
-# extract flux mean for each tally and normalize to compare
