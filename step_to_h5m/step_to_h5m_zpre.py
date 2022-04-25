@@ -25,5 +25,5 @@ cad_to_h5m(h5m_filename= 'h5m_files/zpre.h5m',
                             ],
                         faceting_tolerance = 1e-3,
                         implicit_complement_material_tag = "helium",
-                        graveyard = 1000
+                        graveyard = 500
                         )

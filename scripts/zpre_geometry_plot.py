@@ -11,7 +11,7 @@ h5m_filepath = 'h5m_files/zpre.h5m'
 # materials
 mats = openmc.Materials([inconel,reflector,b4c,hastelloyx,stainless,brass,
                          helium,scintillator,insulation,bepo,lindsay,gold,
-                         aluminum,dt,fuel])
+                         aluminum,dt,fuel,boron])
 mats.export_to_xml()
 
 dag_univ = openmc.DAGMCUniverse(h5m_filepath)

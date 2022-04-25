@@ -7,11 +7,11 @@ from materials import *
 ###############################################################################
 
 #Geometry
-h5m_filepath = 'h5m_files/ARE.h5m'
+h5m_filepath = 'h5m_files/zpre.h5m'
 
 mats = openmc.Materials([inconel,reflector,b4c,hastelloyx,stainless,brass,
                          helium,scintillator,insulation,bepo,lindsay,gold,
-                         aluminum,dt,fuel])
+                         aluminum,dt,fuel,boron])
 mats.export_to_xml()
 
 settings = openmc.Settings()

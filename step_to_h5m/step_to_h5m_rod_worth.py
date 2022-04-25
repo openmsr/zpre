@@ -35,12 +35,12 @@ rod_pos = [0.00, 5.52, 6.18, 7.96, 8.075, 9.46, 10.66, 11.27, 12.384, 13.136,
 for pos in rod_pos:
     cad_to_h5m(h5m_filename = h5m_out_filepath + '_pos_' + str(pos)[0:2]+ '.h5m',
             cubit_path=local_cubit_path,
-            files_with_tags=[{"cad_filename": "../step_files/zpre_no_rod.step",
+            files_with_tags=[{"cad_filename": "./step_files/zpre_no_rod.step",
                              "transforms":{'scale':scale}},
-                            {"cad_filename": "../step_files/zpre_rod_zero.step",
-                             "transforms":{'scale':scale,'move':[0,0,-pos]}},
+                            {"cad_filename": "./step_files/zpre_control_rod_zero.step",
+                             "transforms":{'scale':scale,'move':[0,0,-pos*2.54]}},
                             ],
                         faceting_tolerance = 1e-3,
                         implicit_complement_material_tag = "helium",
-                        graveyard = 1000
+                        graveyard = 500
                         )
