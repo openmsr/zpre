@@ -18,8 +18,8 @@ expansion_coefficient = 15.8e-6
 operating_temperature = 954.2611
 scale = 100.*(1.0 + expansion_coefficient*(operating_temperature-293))
 
-cad_to_h5m(h5m_filename= 'h5m_files/zpre.h5m',
-            cubit_path="/opt/Coreform-Cubit-2021.11/bin/",
+cad_to_h5m(h5m_filename= h5m_out_filepath,
+            cubit_path=local_cubit_path,
             files_with_tags=[{"cad_filename": "step_files/zpre.step",
                              "transforms":{'scale':scale}}
                             ],

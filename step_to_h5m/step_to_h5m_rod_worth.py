@@ -40,7 +40,7 @@ for pos in rod_pos:
                             {"cad_filename": "./step_files/zpre_control_rod_zero.step",
                              "transforms":{'scale':scale,'move':[0,0,-pos*2.54]}},
                             ],
-                        faceting_tolerance = 1e-3,
-                        implicit_complement_material_tag = "helium",
-                        graveyard = 500
-                        )
+            faceting_tolerance = 1e-3,
+            implicit_complement_material_tag = "helium",
+            graveyard = 500
+            )

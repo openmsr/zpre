@@ -32,7 +32,7 @@ def find_pos(h5m_file,k_rel):
 
 def move_rod(pos,distance,start):
 
-    h5m_out_filepath = os.getcwd()  + 'h5m_files/fuel_height/zpre'
+    h5m_out_filepath = os.getcwd()  + '/h5m_files/fuel_height/zpre'
     local_cubit_path = "/opt/Coreform-Cubit-2021.11/bin/"
 
     # scaling up from cm and for thermal expansion
@@ -40,11 +40,11 @@ def move_rod(pos,distance,start):
     scale = 100.*(1.0 + expansion_coefficient*(operating_temp-293))
 
     # move rod 
-    # need to correct so it starts with the step file at zero and moves from there
+    # 1, 2, 46, 80, 100 are the volume ids of the control rod assembly (identified via cubit gui)
     cad_to_h5m(h5m_filename = h5m_out_filepath + '_pos_'+str(pos-1./2.54)[0:2]+'.h5m',
             cubit_path=local_cubit_path,
             files_with_tags=[{"cad_filename": "./step_files/fuel_height/zpre_fuel_"+str(start)+'.step',
-                             "transforms":{'scale':scale}},
+                             "transforms":{'scale':scale,'move':([1,2,46,80,100],[0,0,-pos*2.54-distance])}},
                             {"cad_filename": "./step_files/zpre_control_rod_zero.step",
                              "transforms":{'scale':scale,'move':[0,0,-pos*2.54-distance]}},
                             ],
@@ -74,7 +74,7 @@ def build_model(dagmc_file):
     settings.inactive = 10
     settings.particles = 10000
     settings.export_to_xml()
-    source_area = openmc.stats.Box([-200., -200., -200.],[ 200.,  200.,  200.],only_fissionable = True)
+    source_area = openmc.stats.Box([-200., -200., -200.],[ 200.,  200.,  200.])
     settings.source = openmc.Source(space=source_area)
     settings.export_to_xml()
 
@@ -89,7 +89,7 @@ def build_model(dagmc_file):
 fuel_heights = [0, 1, 3, 5, 7]
 
 # find position for criticality (relative to zero height)
-h5m_filenames = os.listdir(os.cwd()+'h5m_files/fuel_height')
+h5m_filenames = os.listdir(os.getcwd()+'/h5m_files/fuel_height')
 
 # get k for zero pos
 zero_model = build_model('./h5m_files/fuel_height/zpre_fuel_0.h5m')
