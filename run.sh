@@ -4,7 +4,8 @@ set -ex
 
 PS3='ZPRE simulations: '
 options=("k eigenvalue" "geometry plot" "neutron flux" "photon flux" 
-         "neutron flux distribution" "rod worth" "fuel height" "quit")
+         "neutron flux distribution" "rod worth" "fuel height" 
+         "neutron leakage" "quit")
 select opt in "${options[@]}"
 do
     case $opt in
@@ -35,6 +36,10 @@ do
         "fuel height")
             echo "generating fuel height vs k plot..." &&
             bash ./scripts/fh.sh
+            ;;
+        "neutron leakage")
+            echo "generating relative counting rate plot..." &&
+            bash ./scripts/nl.sh
             ;;
         "quit")
             break

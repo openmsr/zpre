@@ -1,11 +1,11 @@
 ###############################################################################
 # Converting step files to h5m file to be read by openmc
 
-# Creates h5m file from step files for each rod position
-# 0in. withdrawn - 36in. withdrawn (full) at one inch increments
+# Creates h5m file from step files for fuel height position
+# as a starting point to find rod height at criticality
 
 # This script uses the following cad_to_h5m version
-# https://github.com/openmsr/cad_to_h5m/tree/material_tag
+# https://github.com/openmsr/cad_to_h5m/tree/move_volumes
 ###############################################################################
 
 from cad_to_h5m import cad_to_h5m
