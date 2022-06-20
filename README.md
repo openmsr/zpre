@@ -10,7 +10,7 @@ cad model of the are can be found [here](https://cad.onshape.com/documents/c51fc
 
 ## prerequisites 
 ### cad_to_h5m
-python package used to automate cubit-dagmc workflow for creating h5m files. these scripts use the [material_tag](https://github.com/openmsr/cad_to_h5m/tree/material_tag) branch 
+python package used to automate cubit-dagmc workflow for creating h5m files. these scripts use the [material_tag](https://github.com/openmsr/cad_to_h5m/tree/move_volumes) branch 
 
 ### cubit
 cubit is required to convert the cad model (.step) into a .h5m file readable by openmc, using the [cad_to_h5m](https://github.com/openmsr/cad_to_h5m/tree/material_tag) package. the step_to_h5m folder contains the necessary scripts for these examples. if your cubit installation is somewhere other than `/opt/Coreform-Cubit-2021.5/bin/`, you will need to update the `local_cubit_path` variable in the step_to_h5m scripts
