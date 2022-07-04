@@ -26,7 +26,7 @@ first, clone the repository
 git clone https://github.com/openmsr/are.git
 ```
 
-enter the are folder and run the `run.sh` script
+enter the zpre folder and run the `run.sh` script
 
 ```
 cd zpre
