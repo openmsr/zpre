@@ -1,0 +1,295 @@
+\documentclass[ms,a4paper]{memoir}
+\chapterstyle{dash}
+\usepackage{ulem}
+\usepackage{xcolor}
+\usepackage[a4paper]{geometry}
+\usepackage{float}
+
+\renewcommand{\thesection}{\arabic{section}}
+\maxtocdepth{subsection}
+\counterwithout{figure}{chapter}
+\counterwithout{table}{chapter}
+
+\usepackage[english]{babel}
+\usepackage{libertine}
+\usepackage{libertinust1math}
+\usepackage[T1]{fontenc}
+
+\usepackage{graphicx}
+\usepackage[figurename=figure,tablename=table,width=.75\textwidth]{caption}
+\usepackage[autostyle]{csquotes}
+\usepackage[style=authoryear,backend=biber]{biblatex}
+\addbibresource{zpre.bib}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    filecolor=black,
+    urlcolor=black
+}
+\urlstyle{same}
+\usepackage{pgf}
+
+\title{ORNL Zero-Power Reactor Experiment (ZPRE) Design}
+\author{openmsr}
+\date{}
+\pagestyle{plain}
+\addtocontents{toc}{\protect\thispagestyle{plain}}
+
+\begin{document}
+
+\maketitle
+
+\vspace{-4cm}
+\renewcommand{\contentsname}{contents}
+\tableofcontents*
+
+\section{\emph{Introduction}}
+
+The reactor described herein (ZPRE) was built under the auspices of the US Atomic Energy Commission (AEC) as part of the Aircraft Nuclear Propulsion (ANP) program and the circulating-fuel reactor program at the Pratt and Whitney Aircraft Company (PWAC). It was to serve as a full-scale mockup of the core and reflector of the Pratt and Whitney Aircraft Reactor No. 1 (PWAR-1). This document is meant to be a comprehensive overview of the design, dimensions and material specifications outlined in ORNL-2536 for the purpose of creating an accurate CAD model of the reactor to be used as the geometry for neutronics simulations in OpenMC.
+
+Care is taken to give proper references to the original data, figures, tables, etc. Likewise, any quantity or feature  lacking documentation or reference not yet found will be estimated or extrapolated from available information.
+
+\section{\emph{Reactor Assembly}}
+
+\subsection{\emph{Core}}
+
+The primary components of the ZPRE core assembly are shown in Figure \ref{fig1}. ORNL-2536 page iii states “The mockup consisted of a 8.1-in.-dia cylindrical beryllium central region surrounded by a fuel annulus contained between two Hastelloy X core shells. The inner shell was 8.5 in. in diameter and 0.125 in. thick. The outer one varied from 21.4 in. diameter and 0.156 in. in thickness at the midplane to 14.8 in. in diameter and 0.25 in. in thickness at the ends. This core shell assembly was covered by a 13-in.-thick beryllium reflector. Coolant passages, but not the coolant, were mocked up in both beryllium regions." Further detail regarding core configuration is outlined on page 4: "The fuel was contained in the annulus formed by the inner and outer Hastelloy X core shells ... The central moderator column, or the island, consisted of beryllium through which longitudinal holes 0.250 in. in diameter were drilled to mock up coolant passages... An annular void 0.125 in, in average thickness was located between the inner core shell and the island beryllium to mock up a coolant passage. Because of engineering and operational complications, none of the coolant passages contained sodium as they would in the power reactor itself. ...
+
+The reflector was built up around the core shell assembly, ... , with 4-in.-thick beryllium rings ... Holes 0.250 in. in diameter were drilled through these slabs to approximate the probable distribution of coolant passages in the reflector of the power reactor... Again no sodium was contained within these coolant passages; however, a helium atmosphere was maintained in the reactor tank ... to protect the Beryllium"
+
+\begin{figure}[H]
+  \centering
+  \fbox{\includegraphics[page=13,width=1.0\textwidth,trim={1cm 2cm 1cm 3cm},clip]{docs/zpre.pdf}}
+  \caption{zpre assembly \parencite[Figure 1]{ornl-2536}}
+  \label{fig1}
+\end{figure}
+
+Figure \ref{fig2} shows the primary dimensions of the core assembly, with values given in Table \ref{tab1}.
+
+\begin{figure}[H]
+  \centering
+  \fbox{\includegraphics[page=25,width=1.0\textwidth,trim={1cm 2cm 1cm 3cm},clip]{docs/zpre.pdf}}
+  \caption{zpre assembly dimensions \parencite[Figure 8]{ornl-2536}.}
+  \label{fig2}
+\end{figure}
+
+\begin{table}[H]
+  \centering
+  \fbox{\includegraphics[page=24,width=1.0\textwidth,trim={0.5cm 5cm 1cm 4.5cm},clip]{docs/zpre.pdf}}
+  \caption{zpre assembly dimensions \parencite[Table 4]{ornl-2536}.}
+  \label{tab1}
+\end{table}
+
+The partial reflector assembly in Figure \ref{fig3} shows the aforementioned coolant channels, the distributions of which are given in Table \ref{tab2}.
+
+\begin{figure}[H]
+  \centering
+  \fbox{\includegraphics[page=17,width=1.0\textwidth,trim={2cm 2cm 1cm 2cm},clip]{docs/zpre.pdf}}
+  \caption{partial reflector assembly \parencite[Figure 3]{ornl-2536}.}
+  \label{fig3}
+\end{figure}
+
+\begin{table}[H]
+  \centering
+  \fbox{\includegraphics[page=15,width=1.0\textwidth,trim={1cm 5cm 4cm 3cm},clip]{docs/zpre.pdf}}
+  \caption{coolant channel distribution \parencite[Table 3]{ornl-2536}.}
+  \label{tab2}
+\end{table}
+
+Table \ref{tab11} gives the composition and weights of the Beryllium reflector and island parts (refer to Figure \ref{fig5}).
+
+\begin{table}[H]
+  \centering
+  \fbox{\includegraphics[page=92,width=1.0\textwidth,trim={0.5cm 5cm 2cm 1cm},clip]{docs/zpre.pdf}}
+  \caption{Beryllium Reflector Composition \parencite[Table 24]{ornl-2536}.}
+  \label{tab11}
+\end{table}
+
+For the sake of simplicity, each reflector part was assumed to have uniform composition defined as the weighted average of those listed above.
+
+
+\subsection{\emph{Reactor Tank \& Sump Tank}}
+
+ORNL-2536 page 3 describes the tank assembly: "The reactor assembly was mounted within the reactor tank in a helium, atmosphere. The sump tank, located under the reactor tank, contained the fuel when it was not in the reactor core. Helium pressure was used to transfer the fuel from the sump tank through a fill and drain line to the reactor core." Material detail is given in Appendix A on page 53: "The reactor tank was constructed of Inconel and served to contain the entire reactor assembly ...
+
+The exterior of the reactor tank was insulated with 4-in.-thick blocks of calcined diatomaceous silica, and the tank assembly was mounted about 5ft above floor level on a stainless steel stand."
+
+Details on the sump tank are also given in Appendix A starting on page 53: "The sump tank, also constructed of Inconel, had a capacity of 287 liters at operating temperature. It was suspended from a tripod stand located below the reactor tank ... and connected to the core region of the reactor through a vertical 3.5-in.-OD Inconel fill and drain line (0.216-in.-thick wall)."
+
+Figure \ref{fig4} shows a photo labelling major components of the reactor assembly.
+
+\begin{figure}[H]
+  \centering
+  \fbox{\includegraphics[page=20,width=1.0\textwidth,trim={1cm 4cm 2cm 2cm},clip]{docs/zpre.pdf}}
+  \caption{full assembly photo\parencite[Figure 6]{ornl-2536}.}
+  \label{fig4}
+\end{figure}
+
+A schematic of this assembly with dimensions is shown in Figure \ref{fig5}
+
+\begin{figure}[H]
+  \centering
+  \fbox{\includegraphics[page=62,width=1.0\textwidth,trim={2cm 2cm 4cm 2cm},clip]{docs/zpre.pdf}}
+  \caption{full assembly \parencite[Figure 23]{ornl-2536}.}
+  \label{fig5}
+\end{figure}
+
+\section{\emph{Core Shells}}
+
+ORNL-2536 page 4 states "The fuel was contained in the annulus formed by the inner and outer Hastelloy X core shells ... The outer shell was 0.156 in. thick in the region of the midplane (cross section at maximum core diameter) and 0.250 in. thick in regions further than 7$\frac{3}{4}$ in. above and below midplane. The inner core shell was uniformly 0.125 in. thick except in the lower end duct where its thickness increased to 0.250 in. Due to difficulties encountered in the fabrication of these shells, variations in the wall thickness of $\pm$ 0.025 in., as well as out-of-roundness and departures from designed contour, occurred." Tables \ref{tab3} and \ref{tab4} detail  respectively the final shapes and thickness of the inner and outer core shells.
+
+\begin{table}[H]
+  \centering
+  \fbox{\includegraphics[page=78,width=1.0\textwidth,trim={1cm 1cm 1cm 4cm},clip]{docs/zpre.pdf}}
+  \caption{inner core shell dimensions \parencite[Table 19]{ornl-2536}.}
+  \label{tab3}
+\end{table}
+
+\begin{table}[H]
+  \centering
+  \fbox{\includegraphics[page=79,width=1.0\textwidth,trim={1cm 0cm 1cm 4cm},clip]{docs/zpre.pdf}}
+  \caption{outer core shell dimensions \parencite[Table 20]{ornl-2536}.}
+  \label{tab4}
+\end{table}
+
+Table \ref{tab13} gives the material composition of the core shells (refer to Tables \ref{tab3} and \ref{tab4})
+
+\begin{table}[H]
+  \centering
+  \fbox{\includegraphics[page=93,width=1.0\textwidth,trim={0cm 5cm 2cm 5.5cm},clip]{docs/zpre.pdf}}
+  \caption{Core Shell Composition \parencite[Table 25]{ornl-2536}.}
+  \label{tab13}
+\end{table}
+
+For the sake of simplicity, the core shells were assumed to have uniform composition defined as the weighted average of those listed above.
+
+\section{\emph{Upper \& Lower End Ducts}}
+
+ORNL-2536 page 13 states "Natural boron carbide-copper plates, which simulated boron-containing regions on the PWAR-1 design, surrounded the lower end duct. A boron carbide-copper plate was also placed at the bottom of the island to limit fissioning to the core region. The areal density of boron carbide in these plates was 0.35 g/cm$^2$.
+
+Sleeves containing elemental B$^{10}$ power packed to a density of 1.5 g/cc in an annulus 0.060 in. thick surrounded the upper end duct. These sleeves, which acted as neutron shields, could be moved from a position of complete retraction to their fully inserted position about 6 in. below the top of the beryllium by actuating rods protruding from the top of the reactor through gastight fittings. Longitudinally through the end duct annulus, in the neighborhood of these shields, a re-entrant tube was provided in which fission rate measurements were made for various positions of the boron shields." Figure \ref{fig8} shows the design of the boron sleeves.
+
+\begin{figure}[H]
+  \centering
+  \fbox{\includegraphics[page=77,width=1.0\textwidth,trim={2cm 3cm 12cm 19cm},clip]{docs/zpre.pdf}}
+  \caption{full assembly \parencite[]{ornl-2536}.}
+  \label{fig8}
+\end{figure}
+
+
+ORNL-2536 page 72 details some design adjustments to the boron plates in the lower end duct; "Boron-containing neutron shields in the lower hemisphere of the reactor were designed to be a B$_4$C-Cu cement clad in stainless steel.$^*$ Unfortunately, efforts to fabricate one of these shields, the largest piece, failed. Because of this difficulty the shields were redesigned as Inconel cans containing boron carbide powder."
+
+There were also minor modifications to the design of the boron sleeves described above. Page 72 details "It was extremely difficult to maintain the continuity of the plated surfaces due to scratching during the boron packing process. The following design changes were therefore made. Type 410 stainless steel, which contains no nickel, was substituted for the Hastelloy X ... The boron annulus thickness was accordingly decreased to 0.062 in. ... "
+
+Table \ref{tab9} gives the composition of the B$^{10}$ pieces
+
+\begin{table}[H]
+  \centering
+  \fbox{\includegraphics[page=91,width=1.0\textwidth,trim={6cm 18cm 6cm 4cm},clip]{docs/zpre.pdf}}
+  \caption{B$^{10}$ Component Composition \parencite[Table 21]{ornl-2536}.}
+  \label{tab9}
+\end{table}
+
+
+
+\section{\emph{Control Rod \& Po-Be Source}}
+
+Page 4 of ORNL-2536 states "The control rod, which also served as a safety rod, consisted of a 2.430-in.-OD x 2.000-in.-ID annulus of 70\% Ni, 30\% Lindsay Mix$^*$ cement 36 in. long (see Appendix A). This annulus was physically contained in a 0.035-in.-thick Inconel jacket ...
+
+A 4.3 x 10$^6$ neutrons/sec (Jan. 31, 1957) Po-Be source rode longitudinally down through the center of the annular control rod into the control rod thimble to its normal position which, during multiplication measurements and startups, was a little below the reactor midplane."
+
+The footnote on page 4 gives the composition of Lindsay Mix: "Lindsay mix is a rare earth oxide mixture consisting of 63.8  wt\% Sm, 26.3 wt\% Gd, 4.8 wt\% Dy, and 0.9 wt\% Nd."
+
+Table \ref{tab10} gives the composition of the cement in the control rod
+
+\begin{table}[H]
+  \centering
+  \fbox{\includegraphics[page=91,width=1.0\textwidth,trim={6cm 11cm 6cm 11cm},clip]{docs/zpre.pdf}}
+  \caption{Control Rod Cement Composition \parencite[Table 22]{ornl-2536}.}
+  \label{tab10}
+\end{table}
+
+
+Figure \ref{fig8} shows the control rod design and dimensions
+
+\begin{figure}[H]
+  \centering
+  \fbox{\includegraphics[page=83,width=1.0\textwidth,trim={1cm 4cm 2cm 4.5cm},clip]{docs/zpre.pdf}}
+  \caption{Control Rod \parencite[Figure 28]{ornl-2536}.}
+  \label{fig8}
+\end{figure}
+
+\section{\emph{Fuel}}
+
+The summary on ORNL-2536 page iii states "The fuel was a mixture of the fused fluoride salts of sodium, zirconium, and uranium. The critical concentration of the clean reactor was 10.22 wt\% U$^{235}$ at 1258$\degree$F." Table \ref{tab8} details the initial critical concentration
+
+\begin{table}[H]
+  \centering
+  \fbox{\includegraphics[page=11,width=1.0\textwidth,trim={4.275cm 8.3cm 1cm 17cm},clip]{docs/zpre.pdf}}
+  \caption{Critical Fuel Composition \parencite[Table 1]{ornl-2536}.}
+  \label{tab8}
+\end{table}
+
+As described on page 4, "The clean critical uranium concentration is defined as that concentration of uranium in weight percent of a specified fuel for which, at a specified temperature, the experiment was critical with the control rod and B$^{10}$ sleeves completely withdrawn."
+
+\section{\emph{Scintillation Counter}}
+
+The scintillation counter setup is described on ORNL-2536 page 35: "The relative effectiveness of each of several arrangements of the B$^{10}$ sleeves in the upper end duct in the reduction of the leakage of fast neutrons from that region of the reactor was measured. A fast-neutron scintillation counter sensitive only to neutrons with energies above 1 Mev, and similar to the one developed by Hornyak,$^3$ was secured to the top of the reactor tank for this purpose. The scintillator, a 2-in.-dia, 1/4-in.-thick ZnS-Lucite disk, was viewed by a DuMont 6292 photomultiplier tube, and both were mounted in a water-cooled brass can. A water flow rate of about 1 liter/min was sufficient to hold the photomultiplier temperature near 68$\degree$F when the ambient temperature outside the can was 110$\degree$F." Figure \ref{fig6} shows the location of the detector with respect to the reactor assembly.
+
+\begin{figure}[H]
+  \centering
+  \fbox{\includegraphics[page=44,width=1.0\textwidth,trim={1cm 3cm 2cm 2cm},clip]{docs/zpre.pdf}}
+  \caption{Neutron Leakage Detector \parencite[Figure 16]{ornl-2536}.}
+  \label{fig6}
+\end{figure}
+
+\section{\emph{Detector Tubes}}
+
+The summary on ORNL-2536 page iii states "The power distribution through the fuel region was measured by counting the fission fragment  gamma-ray activity in small uranium disks positioned in the fuel annulus throughout the experiment."
+
+
+Inconel tubes containing uranium foils -- "detector tubes" -- were welded to the inside of the core shells to measure radial fission rate distribution in the core. ORNL-2536 page 39 describes "Sixty-one foils were arranged in each of six detector tubes. A representative number of these foils were within a narrow weight range for counting purposes and the others were selected to give the correct average density. The detector tubes consisted of 7/8-in.-OD Inconel tubing with a 0.035-in.-thick wall and 0.076-in.-thick end caps. The calcium fluoride spacers were made cup-like to isolate the uranium from the Inconel, thereby preventing intermetallic diffusion at operating temperature. In addition, aluminum oxide spacers were placed at the ends of the tubes where welds were made since the stability of calcium fluoride at the welding temperature was in doubt." Continuing on page 43, it is described "The detector tubes were welded to the core shells and remained in the reactor during the entire period of operation. The detector tubes consisted of 7/8-in.-OD Inconel tubing with a 0.035-in.-thick wall and 0.035-in.-thick end caps. The tube lengths varied with their positions in the assembly. The uranium foils inside the tubes were separated with calcium fluoride spacers ... ". The physical arrangement of material in the detector tubes is shown (for tube D$_1$) in Figure \ref{fig7}.
+
+\begin{figure}[H]
+  \centering
+  \fbox{\includegraphics[page=57,width=1.0\textwidth,trim={5cm 2cm 4.5cm 20.4cm},clip]{docs/zpre.pdf}}
+  \caption{Detector Tube \parencite[Figure 21]{ornl-2536}.}
+  \label{fig7}
+\end{figure}
+
+Table \ref{tab5} lists their positions.
+
+\begin{table}[H]
+  \centering
+  \fbox{\includegraphics[page=51,width=1.0\textwidth,trim={1cm 6cm 1cm 11cm},clip]{docs/zpre.pdf}}
+  \caption{Detector Tube Positions \parencite[Table 15]{ornl-2536}.}
+  \label{tab5}
+\end{table}
+
+One detector tube, when drawn in CAD as described above, can be over 20 parts even after a boolean operation on the calcium fluoride. With all seven detector tubes drawn as described, the model becomes cumbersome. Additionally, the fact that the uranium foils are enclosed, together with their very small size with respect to other reactor dimensions, creates meshing challenges. It was therefore decided to approximate the contents of the detector tubes as single volumes with material composition defined as the weighted average of their constituent parts.
+
+
+\section{\emph{Gold Foils}}
+
+As described on ORNL-2536 page 50, "Gold foils were used to measure the neutron flux distribution in the beryllium reflector at three nominal elevations: the midplane, 8 in. below the midplane, and 16 in. below the midplane." Table \ref{tab6} gives the heights of the gold foil placement.
+
+\begin{table}[H]
+  \centering
+  \fbox{\includegraphics[page=58,width=1.0\textwidth,trim={1cm 13cm 3cm 10cm},clip]{docs/zpre.pdf}}
+  \caption{Gold Foil Positions \parencite[Table 17]{ornl-2536}.}
+  \label{tab6}
+\end{table}
+
+Page 50 continues "The gold foils 5/16 in. in diameter and 2 mils thick. They were held in covered beryllium oxide cups and placed in slots on the beryllium slabs which were then placed in the reflector. The foils remained in the reflector throughout the period of operation." The beryllium  oxide "cups" were assumed to be of the same composition as the reflector, and thus were not modelled separately. Table \ref{tab7} gives the radial positions of the foils at each height along with their activity relative to the foil used for normalization.
+
+\begin{table}[H]
+  \centering
+  \fbox{\includegraphics[page=59,width=1.0\textwidth,trim={3cm 6cm 2cm 10cm},clip]{docs/zpre.pdf}}
+  \caption{Gold Foil Radial Positions \parencite[Table 18]{ornl-2536}.}
+  \label{tab7}
+\end{table}
+
+\printbibliography
+
+\end{document}

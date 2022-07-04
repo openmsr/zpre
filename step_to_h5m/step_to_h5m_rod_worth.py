@@ -31,6 +31,8 @@ rod_pos = [0.00, 5.52, 6.18, 7.96, 8.075, 9.46, 10.66, 11.27, 12.384, 13.136,
 
 ###############################################################################
 
+
+# update to use one step file 
 #generating an h5m file for each rod position
 for pos in rod_pos:
     cad_to_h5m(h5m_filename = h5m_out_filepath + '_pos_' + str(pos)[0:2]+ '.h5m',

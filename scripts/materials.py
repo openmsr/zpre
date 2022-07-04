@@ -1,3 +1,5 @@
+import sys
+sys.path.append('/opt/openmc')
 import openmc
 
 
@@ -95,7 +97,7 @@ brass.add_element('Zn',0.05,percent_type='wo')
 #helium
 helium = openmc.Material(name='helium',temperature = operating_temp)
 helium.add_element('He',1.0)
-helium.set_density('g/cm3',1.03*(10**-4))
+helium.set_density('g/cm3',1.03*(10**-3))
 
 # scintillator (zinc sulfide)
 scintillator = openmc.Material(name='scintillator',temperature = operating_temp)

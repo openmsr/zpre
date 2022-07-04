@@ -8,8 +8,9 @@ from cad_to_h5m import *
 import numpy as np
 import os
 ###############################################################################
-# inputs
 
+# inputs
+step_filepath = "step_files/zpre.step"
 h5m_out_filepath = os.getcwd()  + '/h5m_files/zpre.h5m'
 local_cubit_path = "/opt/Coreform-Cubit-2021.11/bin/"
 
@@ -20,9 +21,7 @@ scale = 100.*(1.0 + expansion_coefficient*(operating_temperature-293))
 
 cad_to_h5m(h5m_filename= h5m_out_filepath,
             cubit_path=local_cubit_path,
-            files_with_tags=[{"cad_filename": "step_files/zpre.step",
-                             "transforms":{'scale':scale}}
-                            ],
+            files_with_tags=[{"cad_filename": step_filepath}],
                         faceting_tolerance = 1e-3,
                         implicit_complement_material_tag = "helium",
                         graveyard = 500
