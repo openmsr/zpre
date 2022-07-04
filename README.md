@@ -23,7 +23,7 @@ these simulations use [openmc](https://docs.openmc.org/en/stable/). automated so
 first, clone the repository
 
 ```
-git clone https://github.com/openmsr/are.git
+git clone https://github.com/openmsr/zpre.git
 ```
 
 enter the zpre folder and run the `run.sh` script
