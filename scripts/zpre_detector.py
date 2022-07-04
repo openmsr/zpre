@@ -15,14 +15,16 @@ import matplotlib.pyplot as plt
 
 output_filename = 'k_effs.txt'
 
-#equilibrium operating temperature in kelvin
+# equilibrium operating temperature in kelvin
 operating_temp = 911.15
+
+# create materials object
+mats = openmc.Materials([inconel,reflector,b4c,hastelloyx,stainless,brass,
+                             helium,scintillator,insulation,bepo,lindsay,gold,
+                             aluminum,dt,fuel, boron])
 
 def build_model(dagmc_file):
 
-    mats = openmc.Materials([inconel,reflector,b4c,hastelloyx,stainless,brass,
-                             helium,scintillator,insulation,bepo,lindsay,gold,
-                             aluminum,dt,fuel, boron])
     mats.export_to_xml()
 
     settings = openmc.Settings()
@@ -52,6 +54,7 @@ def build_model(dagmc_file):
     return model
 
 h5m_filenames = os.listdir(os.getcwd()+'/h5m_files/sleeve_height/')
+h5m_filenames.sort(key=lambda x:x[13])
 
 # relative counting rates to initial position 
 counting_rates_sim = []
@@ -64,7 +67,7 @@ counting_rates_ex = [1.00, 0.94, 0.82, 0.63, 0.62, 0.70, 0.92]
 k_file = open(output_filename, 'w+')
 
 for filename in h5m_filenames:
-    model = build_model(filename)
+    model = build_model(os.getcwd()+'/h5m_files/sleeve_height/'+filename)
     sp_filepath = model.run(output = True)
 
     with openmc.StatePoint(sp_filepath) as sp:

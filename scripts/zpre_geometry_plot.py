@@ -21,26 +21,30 @@ geom.export_to_xml()
 #plotting geometry
 plots = openmc.Plots()
 
-x_width = 350
-y_width = 350
+x_width = 250
+y_width = 250
+res = 750
 
 #xy plot
 p1 = openmc.Plot()
+#p1.origin=[0,0,100]
 p1.width = (x_width,y_width)
-p1.pixels = (1000, 1000)
+p1.pixels = (res,res)
 p1.color_by = 'material'
 
 #xz plot
 p2 = openmc.Plot()
+#p2.origin=[0,0,100]
 p2.basis = 'xz'
 p2.width = (x_width,y_width)
-p2.pixels = (1000, 1000)
+p2.pixels = (res,res)
 p2.color_by = 'material'
 
 p3 = openmc.Plot()
+#p3.origin=[0,0,100]
 p3.basis = 'yz'
 p3.width = (x_width,y_width)
-p3.pixels = (1000, 1000)
+p3.pixels = (res,res)
 p3.color_by = 'material'
 
 plots.append(p1)
