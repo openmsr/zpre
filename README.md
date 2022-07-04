@@ -30,5 +30,5 @@ enter the are folder and run the `run.sh` script
 
 ```
 cd zpre
-./run.sh
+bash run.sh
 ```
