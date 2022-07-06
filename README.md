@@ -5,6 +5,8 @@ detailed cad model and simulations of the [zpre](https://www.osti.gov/servlets/p
 
 cad model of the are can be found [here](https://cad.onshape.com/documents/c51fcabf7b4a45b5a8d610d5/v/1e941e226a75c4f4f3cbe020/e/4c356de19c02efb455bb582a) on onshape. note, the step files for the simulations (found in the step_files folder) come from the [final_for_export](https://cad.onshape.com/documents/c51fcabf7b4a45b5a8d610d5/w/a34269ffec50905ef4b5f5db/e/4c356de19c02efb455bb582a?renderMode=0&uiState=62b09138d87c8f59e3122317) branch. currently onshape does not properly export enclosed volumes, so some parts need to be modified in order to be meshed properly. additionally, one of the splines of the inner core shell was replaced with a linear approximation due to meshing issues. 
 
+a writeup of the design, material characteristics and associated assumptions can be found in `docs/zpre.pdf`
+
 ### zpre core 
 ![](figures/core.png)
 
