@@ -1,4 +1,6 @@
 import matplotlib.pyplot as plt
+import sys
+sys.path.append('/opt/openmc/')
 import openmc
 from materials import *
 
@@ -7,7 +9,7 @@ from materials import *
 ###############################################################################
 
 #Geometry
-h5m_filepath = 'h5m_files/zpre_simplified_4.h5m'
+h5m_filepath = 'h5m_files/zpre.h5m'
 
 mats = openmc.Materials([inconel,reflector,b4c,hastelloyx,stainless,brass,
                          helium,scintillator,insulation,bepo,lindsay,gold,
