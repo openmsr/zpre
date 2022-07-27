@@ -13,11 +13,11 @@ step_filepath = "./step_files/zpre_simplified.step"
 h5m_out_filepath = os.getcwd() + '/h5m_files/zpre.h5m'
 
 # mesher config
-ab.mesher_config['min_mesh_size'] = 0.2
+ab.mesher_config['min_mesh_size'] = 0.001
 ab.mesher_config['mesh_algorithm'] = 2
-#ab.mesher_config['threads'] = 6
+ab.mesher_config['threads'] = 55
 #ab.mesher_config['max_mesh_size'] = 1000
-#ab.mesher_config['curve_samples'] = 100
+#ab.mesher_config['curve_samples'] = 19
 #ab.mesher_config['vetoed'] = [474,1157,1243,1341,1537]
 #ab.mesher_config['angular_tolerance'] = 0.09
 

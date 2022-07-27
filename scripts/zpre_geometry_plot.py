@@ -12,6 +12,7 @@ h5m_filepath = 'h5m_files/zpre.h5m'
 mats = openmc.Materials([inconel,reflector,b4c,hastelloyx,stainless,brass,
                          helium,scintillator,insulation,bepo,lindsay,gold,
                          aluminum,dt,fuel,boron])
+mats.cross_sections='/opt/nuclear_data/endfb80_hdf5/cross_sections.xml'
 mats.export_to_xml()
 
 dag_univ = openmc.DAGMCUniverse(h5m_filepath)
@@ -23,7 +24,7 @@ plots = openmc.Plots()
 
 x_width = 250
 y_width = 250
-res = 750
+res = 1000
 
 #xy plot
 p1 = openmc.Plot()
