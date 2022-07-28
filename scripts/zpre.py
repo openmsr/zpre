@@ -23,7 +23,7 @@ geometry.export_to_xml()
 mats = openmc.Materials([inconel,reflector,b4c,hastelloyx,stainless,brass,
                          helium,scintillator,insulation,bepo,lindsay,gold,
                          aluminum,dt,fuel,boron])
-mats.cross_sections='/opt/nuclear_data/endfb80_hdf5/cross_sections.xml'
+mats.cross_sections='/home/luke/openmc/nuclear_data/endfb80_hdf5/cross_sections.xml'
 mats.export_to_xml()
 
 # settings
@@ -36,6 +36,7 @@ settings.particles = 10000
 settings.cross_sections='/opt/nuclear_data/endfb80_hdf5/cross_sections.xml'
 source_area = openmc.stats.Box([-200., -200., -200.],[ 200.,  200.,  200.])
 settings.source = openmc.Source(space=source_area)
+settings.max_lost_particles=1000
 settings.export_to_xml()
 
 
