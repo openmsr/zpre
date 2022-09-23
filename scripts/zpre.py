@@ -23,7 +23,6 @@ geometry.export_to_xml()
 mats = openmc.Materials([inconel,reflector,b4c,hastelloyx,stainless,brass,
                          helium,scintillator,insulation,bepo,lindsay,gold,
                          aluminum,dt,fuel,boron])
-mats.cross_sections='/home/luke/openmc/nuclear_data/endfb80_hdf5/cross_sections.xml'
 mats.export_to_xml()
 
 # settings
