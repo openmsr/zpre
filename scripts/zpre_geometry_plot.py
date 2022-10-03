@@ -35,7 +35,7 @@ p1 = openmc.Plot()
 p1.basis = 'xy'
 p1.width = (x_width,y_width)
 p1.pixels = (res,res)
-p1.filename='plot_xy.png'
+p1.filename='plot_xy'
 p1.color_by = 'material'
 
 #xz plot
@@ -44,7 +44,7 @@ p2 = openmc.Plot()
 p2.basis = 'xz'
 p2.width = (x_width,y_width)
 p2.pixels = (res,res)
-p2.filename='plot_xz.png'
+p2.filename='plot_xz'
 p2.color_by = 'material'
 
 p3 = openmc.Plot()
@@ -52,7 +52,7 @@ p3 = openmc.Plot()
 p3.basis = 'yz'
 p3.width = (x_width,y_width)
 p3.pixels = (res,res)
-p3.filename='plot_yz.png'
+p3.filename='plot_yz'
 p3.color_by = 'material'
 
 plots.append(p1)
