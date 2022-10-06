@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 import openmc
 from materials import *
+import numpy as np
 
 ###############################################################################
 #create .png file of neutron flux (boron sleeves fully inserted)
@@ -62,28 +63,28 @@ fission.std_dev.shape = (1000,1000)
 fission.mean.shape = (1000,1000)
 
 fig,ax = plt.subplots()
-ax.imshow(flux.mean,extent=[mesh.lower_left[0],mesh.lower_left[1], mesh.upper_right[0],mesh.upper_right[1])
+ax.imshow(flux.mean,extent=[mesh.lower_left[0], mesh.upper_right[0],mesh.lower_left[1],mesh.upper_right[1]])
 ax.set_xlabel('X / cm')
 ax.set_ylabel('Y / cm')
 ax.set_title('neutron flux')
 plt.savefig('neutron_flux')
 
 fig,ax = plt.subplots()
-ax.imshow(np.log(flux.mean),extent=[mesh.lower_left[0],mesh.lower_left[1], mesh.upper_right[0],mesh.upper_right[1])
+ax.imshow(np.log(flux.mean+1),extent=[mesh.lower_left[0], mesh.upper_right[0],mesh.lower_left[1],mesh.upper_right[1]])
 ax.set_xlabel('X / cm')
 ax.set_ylabel('Y / cm')
 ax.set_title('neutron flux[log]')
 plt.savefig('neutron_flux_log')
 
 fig,ax = plt.subplots()
-ax.imshow(fission.mean,extent=[mesh.lower_left[0],mesh.lower_left[1], mesh.upper_right[0],mesh.upper_right[1])
+ax.imshow(fission.mean,extent=[mesh.lower_left[0], mesh.upper_right[0],mesh.lower_left[1],mesh.upper_right[1]])
 ax.set_xlabel('X / cm')
 ax.set_ylabel('Y / cm')
 ax.set_title('fission events')
 plt.savefig('fission_evts')
 
 fig,ax = plt.subplots()
-ax.imshow(np.log(fission.mean),extent=[mesh.lower_left[0],mesh.lower_left[1], mesh.upper_right[0],mesh.upper_right[1])
+ax.imshow(np.log(fission.mean+1),extent=[mesh.lower_left[0], mesh.upper_right[0],mesh.lower_left[1],mesh.upper_right[1]])
 ax.set_xlabel('X / cm')
 ax.set_ylabel('Y / cm')
 ax.set_title('fission events [log]')
