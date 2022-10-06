@@ -48,3 +48,6 @@ tally3d.scores=['flux','fission']
 tallies.append(tally3d)
 
 tallies.export_to_xml()
+
+model = openmc.model.Model(geometry, mats, settings, tallies)
+sp_filename = model.run()
