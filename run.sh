@@ -3,7 +3,7 @@
 set -ex
 
 PS3='ZPRE simulations: '
-options=("k eigenvalue" "geometry plot" "neutron flux" "photon flux" "quit")
+options=("k eigenvalue" "geometry plot" "geometry voxelplot" "neutron flux" "photon flux" "quit")
 select opt in "${options[@]}"
 do
     case $opt in
@@ -14,6 +14,10 @@ do
         "geometry plot")
             echo "plotting geometry..." &&
             bash ./scripts/gp.sh
+            ;;
+        "geometry voxelplot")
+            echo "plotting geometry in 3d..." &&
+            bash ./scripts/vp.sh
             ;;
         "neutron flux")
             echo "generating neutron flux plot..." &&
