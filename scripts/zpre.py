@@ -30,12 +30,9 @@ settings = openmc.Settings()
 settings.temperature = {'method':'interpolation'}
 settings.batches = 100
 settings.inactive = 10
-settings.particles = 10000
-#source_area = openmc.stats.Box([-200., -200., -200.],[ 200.,  200.,  200.],only_fissionable = True)
-settings.cross_sections='/opt/nuclear_data/endfb80_hdf5/cross_sections.xml'
-source_area = openmc.stats.Box([-200., -200., -200.],[ 200.,  200.,  200.])
+settings.particles = 1000
+source_area = openmc.stats.Box([-200., -200., -200.],[ 200.,  200.,  200.],only_fissionable = True)
 settings.source = openmc.Source(space=source_area)
-settings.max_lost_particles=1000
 settings.export_to_xml()
 
 
