@@ -36,9 +36,9 @@ settings.export_to_xml()
 tallies = openmc.Tallies()
 
 mesh = openmc.RegularMesh()
-mesh.dimension = [1000,1000]
-mesh.lower_left = [-300,-300]
-mesh.upper_right = [300,300]
+mesh.dimension = [100,100,100]
+mesh.lower_left = [-100,-100,-100]
+mesh.upper_right = [100,100,100]
 
 mesh_filter = openmc.MeshFilter(mesh)
 
@@ -57,35 +57,64 @@ s_tally = sp.get_tally(scores=['flux','fission'])
 flux = s_tally.get_slice(scores=['flux'])
 fission = s_tally.get_slice(scores=['fission'])
 
-flux.std_dev.shape = (1000,1000)
-flux.mean.shape = (1000,1000)
-fission.std_dev.shape = (1000,1000)
-fission.mean.shape = (1000,1000)
+flux.std_dev.shape = (100,100,100)
+flux.mean.shape = (100,100,100)
+fission.std_dev.shape = (100,100,100)
+fission.mean.shape = (100,100,100)
 
+
+split_index = int(100/2)
+# xy plot
+xy_mean = flux.mean[split_index,:,:]
 fig,ax = plt.subplots()
-ax.imshow(flux.mean,extent=[mesh.lower_left[0], mesh.upper_right[0],mesh.lower_left[1],mesh.upper_right[1]])
+ax.imshow(xy_mean)
 ax.set_xlabel('X / cm')
 ax.set_ylabel('Y / cm')
-ax.set_title('neutron flux')
-plt.savefig('neutron_flux')
+ax.set_title('mean neutron flux: xy plane')
+plt.savefig('neutron_flux_xy')
 
+# xz plot
+xz_mean = flux.mean[:,split_index, :]
 fig,ax = plt.subplots()
-ax.imshow(np.log(flux.mean+1),extent=[mesh.lower_left[0], mesh.upper_right[0],mesh.lower_left[1],mesh.upper_right[1]])
+ax.imshow(xz_mean)
 ax.set_xlabel('X / cm')
-ax.set_ylabel('Y / cm')
-ax.set_title('neutron flux[log]')
-plt.savefig('neutron_flux_log')
+ax.set_ylabel('Z / cm')
+ax.set_title('mean neutron flux: xz plane')
+plt.savefig('neutron_flux_xz')
 
+# yz plot
+yz_mean = flux.mean[:,:,split_index]
 fig,ax = plt.subplots()
-ax.imshow(fission.mean,extent=[mesh.lower_left[0], mesh.upper_right[0],mesh.lower_left[1],mesh.upper_right[1]])
-ax.set_xlabel('X / cm')
-ax.set_ylabel('Y / cm')
-ax.set_title('fission events')
-plt.savefig('fission_evts')
+ax.imshow(yz_mean)
+ax.set_xlabel('Y / cm')
+ax.set_ylabel('Z / cm')
+ax.set_title('mean neutron flux: yz plane')
+plt.savefig('neutron_flux_yz')
 
-fig,ax = plt.subplots()
-ax.imshow(np.log(fission.mean+1),extent=[mesh.lower_left[0], mesh.upper_right[0],mesh.lower_left[1],mesh.upper_right[1]])
-ax.set_xlabel('X / cm')
-ax.set_ylabel('Y / cm')
-ax.set_title('fission events [log]')
-plt.savefig('fission_evts_log')
+#fig,ax = plt.subplots()
+#ax.imshow(flux.mean,extent=[mesh.lower_left[0], mesh.upper_right[0],mesh.lower_left[1],mesh.upper_right[1]])
+#ax.set_xlabel('X / cm')
+#ax.set_ylabel('Y / cm')
+#ax.set_title('neutron flux')
+#plt.savefig('neutron_flux')
+
+#fig,ax = plt.subplots()
+#ax.imshow(np.log(flux.mean+1),extent=[mesh.lower_left[0], mesh.upper_right[0],mesh.lower_left[1],mesh.upper_right[1]])
+#ax.set_xlabel('X / cm')
+#ax.set_ylabel('Y / cm')
+#ax.set_title('neutron flux[log]')
+#plt.savefig('neutron_flux_log')
+
+#fig,ax = plt.subplots()
+#ax.imshow(fission.mean,extent=[mesh.lower_left[0], mesh.upper_right[0],mesh.lower_left[1],mesh.upper_right[1]])
+#ax.set_xlabel('X / cm')
+#ax.set_ylabel('Y / cm')
+#ax.set_title('fission events')
+#plt.savefig('fission_evts')
+
+#fig,ax = plt.subplots()
+#ax.imshow(np.log(fission.mean+1),extent=[mesh.lower_left[0], mesh.upper_right[0],mesh.lower_left[1],mesh.upper_right[1]])
+#ax.set_xlabel('X / cm')
+#ax.set_ylabel('Y / cm')
+#ax.set_title('fission events [log]')
+#plt.savefig('fission_evts_log')
