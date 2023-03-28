@@ -8,26 +8,26 @@ detailed cad model and simulations of the [zpre](https://www.osti.gov/servlets/p
 ### zpre core 
 ![](figures/core.png)
 
-work-in-progress cad model of the zpre can be found [here](https://cad.onshape.com/documents/c51fcabf7b4a45b5a8d610d5/w/a34269ffec50905ef4b5f5db/e/4c356de19c02efb455bb582a?renderMode=0&uiState=62d54b7b4c1a0504f9194fa8) on onshape.
+Work-in-progress cad model of the zpre can be found [here](https://cad.onshape.com/documents/c51fcabf7b4a45b5a8d610d5/w/a34269ffec50905ef4b5f5db/e/4c356de19c02efb455bb582a?renderMode=0&uiState=62d54b7b4c1a0504f9194fa8) on onshape.
 
-note that this work and the cad model is under the GNU General Public License v3.0
+Note that this work and the cad model is under the GNU General Public License v3.0
 
-## prerequisites 
+## prerequisites
 ### CAD_to_openMC
 [CAD_to_openMC](https://github.com/openmsr/CAD_to_openMC) is an open-source package to convert CAD geometry (in the form of '.step' files) into an openmc-readable h5m file
 
 ### openmc
-these simulations use [openmc](https://docs.openmc.org/en/stable/). automated source installation scripts for linux can be found [here](https://github.com/openmsr/openmc_install_scripts)
+These simulations use [openmc](https://docs.openmc.org/en/stable/). Automated source installation scripts for linux can be found [here](https://github.com/openmsr/openmc_install_scripts)
 
 ## simulation guide
 
-first, clone the repository
+First, clone the repository
 
 ```
-git clone https://github.com/openmsr/are.git
+git clone https://github.com/openmsr/zpre.git
 ```
 
-enter the are folder and run the `run.sh` script
+Second, enter the zpre folder and run the `run.sh` script
 
 ```
 cd zpre
