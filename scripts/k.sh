@@ -6,6 +6,6 @@ if test -f "./h5m_files/zpre.h5m"
 then
   python ./scripts/zpre.py
 else
-  python ./step_to_h5m/step_to_h5m_zpre.py &&
+  python ./scripts/step_to_h5m_zpre.py &&
   python ./scripts/zpre.py
 fi

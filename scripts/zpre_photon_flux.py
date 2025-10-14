@@ -3,16 +3,23 @@ import openmc
 from materials import *
 
 ###############################################################################
-#create .png file of photon flux (boron sleeves inserted)
+#create .png file of photon flux (boron sleeves fully inserted)
 ###############################################################################
 
 #Geometry
 h5m_filepath = 'h5m_files/zpre.h5m'
+graveyard = openmc.Sphere(r=10000,boundary_type='vacuum')
+cad_univ = openmc.DAGMCUniverse(filename=h5m_filepath,auto_geom_ids=True)
+cad_cell = openmc.Cell(region=-graveyard,fill=cad_univ)
+root=openmc.Universe()
+root.add_cells([cad_cell])
+geometry=openmc.Geometry(root)
+geometry.export_to_xml()
 
 #materials
 mats = openmc.Materials([inconel,reflector,b4c,hastelloyx,stainless,brass,
                          helium,scintillator,insulation,bepo,lindsay,gold,
-                         aluminum,dt,fuel])
+                         aluminum,dt,fuel,boron])
 mats.export_to_xml()
 
 settings = openmc.Settings()
@@ -25,10 +32,7 @@ source_area = openmc.stats.Box([-200., -200., -200.],[ 200.,  200.,  200.],only_
 settings.source = openmc.Source(space=source_area)
 settings.export_to_xml()
 
-dag_univ = openmc.DAGMCUniverse(h5m_filepath)
-geom = openmc.Geometry(root=dag_univ)
-geom.export_to_xml()
-
+#tallies
 tallies = openmc.Tallies()
 
 # sets up filters for the tallies
@@ -52,12 +56,11 @@ tallies.append(tally)
 tallies.export_to_xml()
 
 # combine all the required parts to make a model
-model = openmc.model.Model(geom, mats, settings, tallies)
+model = openmc.model.Model(geometry, mats, settings, tallies)
 
 # remove old files and runs OpenMC
-results_filename = model.run()
-
-sp = openmc.StatePoint('statepoint.100.h5')
+sp_filename = model.run()
+sp = openmc.StatePoint(sp_filename)
 s_tally = sp.get_tally(scores=['flux'])
 
 flux = s_tally.get_slice(scores=['flux'])
@@ -65,8 +68,16 @@ flux = s_tally.get_slice(scores=['flux'])
 flux.std_dev.shape = (1000,1000)
 flux.mean.shape = (1000,1000)
 
-fig = plt.subplot(121)
-fig.axis([350,650,350,650])
-fig.pixels = (2000,2000)
-fig.imshow(flux.mean)
-plt.savefig('photon_flux', dpi=2000)
+fig,ax = plt.subplots()
+ax.imshow(flux.mean,extent=[-300,300,-300,300])
+ax.set_xlabel('X / cm')
+ax.set_ylabel('Y / cm')
+ax.set_title('photon flux')
+plt.savefig('photon_flux')
+
+fig,ax = plt.subplots()
+ax.imshow(np.log(flux.mean),extent=[-300,300,-300,300])
+ax.set_xlabel('X / cm')
+ax.set_ylabel('Y / cm')
+ax.set_title('photon flux[log]')
+plt.savefig('photon_flux_log')

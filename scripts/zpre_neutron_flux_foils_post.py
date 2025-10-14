@@ -90,8 +90,8 @@ sixteen_below_s_e = [f/norm for f in sixteen_below_s_e]
 # generate plots
 # midplane
 fig_m, ax_m = plt.subplots()
-ax_m.plot(distance_m,midplane_e,label = 'experimental',linestyle='--',marker='x')
-ax_m.errorbar(distance_m,midplane_s_m, yerr=midplane_s_e,label = 'simulated',linestyle='--',marker='o')
+ax_m.plot(distance_m,midplane_e,label = 'ORNL-2536',linestyle='--',marker='o', color='forestgreen')
+ax_m.errorbar(distance_m,midplane_s_m, yerr=midplane_s_e,label = 'OpenMC',linestyle='--',marker='x', color='indianred')
 ax_m.set_xlabel('distance (in.)')
 ax_m.set_ylabel('relative neutron flux')
 ax_m.set_title('neutron flux distribution - midplane')
@@ -99,8 +99,8 @@ ax_m.legend()
 
 # 8 in. below
 fig_8, ax_8 = plt.subplots()
-ax_8.plot(distance_e,eight_below_e,label = 'experimental',linestyle='--',marker='x')
-ax_8.errorbar(distance_e,eight_below_s_m,yerr=eight_below_s_e,label = 'simulated',linestyle='--',marker='o')
+ax_8.plot(distance_e,eight_below_e,label = 'ORNL-2536',linestyle='--',marker='o', color='forestgreen')
+ax_8.errorbar(distance_e,eight_below_s_m,yerr=eight_below_s_e,label = 'OpenMC',linestyle='--',marker='x', color='indianred')
 ax_8.set_xlabel('distance (in.)')
 ax_8.set_ylabel('relative neutron flux')
 ax_8.set_title('neutron flux distribution - 8 in. below midplane')
@@ -108,8 +108,8 @@ ax_8.legend()
 
 # 16 in. below
 fig_16, ax_16 = plt.subplots()
-ax_16.plot(distance_s,sixteen_below_e, label = 'experimental',linestyle='--',marker='x')
-ax_16.errorbar(distance_s,sixteen_below_s_m,yerr=sixteen_below_s_e,label = 'simulated',linestyle='--',marker='o')
+ax_16.plot(distance_s,sixteen_below_e, label = 'ORNL-2536',linestyle='--',marker='o', color='forestgreen')
+ax_16.errorbar(distance_s,sixteen_below_s_m,yerr=sixteen_below_s_e,label = 'OpenMC',linestyle='--',marker='x', color='indianred')
 ax_16.set_xlabel('distance (in.)')
 ax_16.set_ylabel('relative neutron flux')
 ax_16.set_title('neutron flux distribution - 16 in. below midplane')
